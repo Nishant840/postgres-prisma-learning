@@ -36,8 +36,8 @@ async function insertData(){
     })
     try{
         await client.connect();
-        const insertQuery = "INSERT INTO users (username,email,password) VALUES ($1,$2,$3)";
-        const values = ['username3','username3@example.com','user3_password']
+        const insertQuery = "INSERT INTO addresses (user_id,city,street,pincode) VALUES ($1,$2,$3,$4)";
+        const values = [1,'bhopal','nehru nagar','462003']
         const res = await client.query(insertQuery,values);
         console.log("Insertion successfull!", res);
     }

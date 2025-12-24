@@ -40,10 +40,51 @@ const prisma = new PrismaClient()
 //     lastname: "kumar"})
 
 // getting user details
-async function getUserDetails(username:string){
-    const res = await prisma.user.findMany({
-        where:{email:username}
+// async function getUserDetails(username:string){
+//     const res = await prisma.user.findMany({
+//         where:{email:username}
+//     })
+//     console.log(res);
+// }
+// getUserDetails("nk1@gmail.com");
+
+// get all todos
+// async function getTodos(userId:number){
+//     const res = await prisma.todo.findMany({
+//         where:{
+//             id: userId
+//         }
+//     })
+//     console.log(res);
+// }
+// getTodos(1);
+
+// insert some todos:
+// async function insertTodos(userId:number){
+//     const res = await prisma.todo.create({
+//         data:{
+//             title:"Gym",
+//             description: "Go to gym from 5 ot 9 p.m",
+//             userId:1
+//         }
+//     })
+//     console.log(res);
+// }
+// insertTodos(1)
+
+// get Todos and user details
+async function getTodosAndUserDeatails(userId:number){
+    const res = await prisma.todo.findMany({
+        where:{
+            id: userId
+        },
+        select:{
+            id: true,
+            title:true,
+            description: true,
+            user: true
+        }
     })
     console.log(res);
 }
-getUserDetails("nk1@gmail.com");
+getTodosAndUserDeatails(1);
